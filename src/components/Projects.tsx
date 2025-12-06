@@ -11,6 +11,7 @@ import blogImage from '../assets/image/Blog.png';
 import scaleLinkImage from '../assets/image/ScaleLink2.png';
 import chatImage from '../assets/image/charWrbSokets.png';
 import movieImage from '../assets/image/apiPelis.png';
+import portfolioImage from '../assets/image/Captura desde 2025-12-06 14-21-44.png';
 
 interface Project {
     id: number;
@@ -25,6 +26,7 @@ interface Project {
 }
 
 const projectsData: Project[] = [
+
     {
         id: 9,
         title: "ScaleLink",
@@ -78,6 +80,19 @@ const projectsData: Project[] = [
         badge: { icon: Camera, text: "Social Media", color: "pink" },
         layout: "left",
         gradient: "from-fuchsia-200 via-violet-200 to-white dark:from-fuchsia-900 dark:via-violet-900 dark:to-slate-900"
+    },
+    {
+        id: 10,
+        title: "Digital Portfolio 2025",
+        description: "Portafolio personal interactivo con diseño Glassmorphism, animaciones fluidas y modo oscuro.",
+        tags: ["React", "TypeScript", "Tailwind", "Framer Motion"],
+        links: [
+            { label: "Ver Código", url: "https://github.com/GastonM12/Portafolio", icon: Github }
+        ],
+        image: portfolioImage,
+        badge: { icon: Sparkles, text: "Personal Brand", color: "indigo" },
+        layout: "right",
+        gradient: "from-indigo-200 via-purple-200 to-white dark:from-indigo-900 dark:via-purple-900 dark:to-slate-900"
     },
     {
         id: 2,

@@ -76,7 +76,7 @@ Las sugerencias y pull requests son bienvenidas. Si encuentras algún error o ti
 
 - **LinkedIn**: [Gaston Mori](https://www.linkedin.com/in/gaston-mori)
 - **GitHub**: [GastonM12](https://github.com/GastonM12)
-- **Email**: [Tu Email Aquí]
+- **Email**: [GastonM12@gmail.com](mailto:gastonexequielmori@outlook.com)
 
 ---
 © 2025 Gaston Mori. Todos los derechos reservados.
