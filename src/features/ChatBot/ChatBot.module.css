@@ -1,0 +1,4 @@
+/* ChatBot specific styles */
+.chatContainer {
+    z-index: 50;
+}

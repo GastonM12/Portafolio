@@ -1,0 +1,5 @@
+/* Experience specific styles */
+.experienceContainer {
+    position: relative;
+    contain: content;
+}

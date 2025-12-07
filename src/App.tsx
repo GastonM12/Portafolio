@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Hero } from './components/Hero';
-import { Experience } from './components/Experience';
-import { Projects } from './components/Projects';
-import { Contact } from './components/Contact';
-import { Navbar } from './components/Navbar';
-import { ChatBot } from './components/ChatBot';
-import { BentoGrid } from './components/BentoGrid';
-import { Workflow } from './components/Workflow';
-import Preloader from './components/Preloader';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { Hero } from './features/Hero';
+import { Experience } from './features/Experience';
+import { Projects } from './features/Projects';
+import { Contact } from './features/Contact';
+import { Navbar } from './features/Navbar';
+import { ChatBot } from './features/ChatBot';
+import { BentoGrid } from './features/BentoGrid';
+import { Workflow } from './features/Workflow';
+import { Preloader } from './features/Preloader';
+import { m, LazyMotion, domAnimation, useScroll, useSpring } from 'framer-motion';
 
 const App: React.FC = () => {
     const { scrollYProgress } = useScroll();
@@ -47,34 +47,36 @@ const App: React.FC = () => {
     if (!mounted) return null;
 
     return (
-        <div className="bg-slate-50 dark:bg-antigravity-bg min-h-screen text-slate-900 dark:text-slate-200 antialiased selection:bg-indigo-500/30 selection:text-indigo-800 dark:selection:text-indigo-200 transition-colors duration-300">
+        <LazyMotion features={domAnimation}>
+            <div className="bg-slate-50 dark:bg-antigravity-bg min-h-screen text-slate-900 dark:text-slate-200 antialiased selection:bg-indigo-500/30 selection:text-indigo-800 dark:selection:text-indigo-200 transition-colors duration-300">
 
-            {loading && <Preloader onComplete={() => setLoading(false)} />}
+                {loading && <Preloader onComplete={() => setLoading(false)} />}
 
-            <Navbar theme={theme} toggleTheme={toggleTheme} />
+                <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-            {/* Reading Progress Bar */}
-            <motion.div
-                className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 origin-left z-50"
-                style={{ scaleX }}
-            />
+                {/* Reading Progress Bar */}
+                <m.div
+                    className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 origin-left z-50"
+                    style={{ scaleX }}
+                />
 
-            <main className="flex flex-col gap-0">
-                <Hero theme={theme} />
+                <main className="flex flex-col gap-0">
+                    <Hero theme={theme} />
 
-                <div className="relative z-10 bg-slate-50 dark:bg-antigravity-bg">
-                    <BentoGrid />
-                    <Experience />
-                    <Projects />
-                    <Workflow />
-                    <Contact />
-                </div>
-            </main>
+                    <div className="relative z-10 bg-slate-50 dark:bg-antigravity-bg">
+                        <BentoGrid />
+                        <Experience />
+                        <Projects />
+                        <Workflow />
+                        <Contact />
+                    </div>
+                </main>
 
-            {/* AI Assistant */}
-            <ChatBot />
+                {/* AI Assistant */}
+                <ChatBot />
 
-        </div>
+            </div>
+        </LazyMotion>
     );
 };
 

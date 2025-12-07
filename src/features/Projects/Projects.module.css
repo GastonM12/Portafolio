@@ -1,0 +1,5 @@
+/* Projects specific styles */
+.projectsContainer {
+    position: relative;
+    contain: content;
+}
