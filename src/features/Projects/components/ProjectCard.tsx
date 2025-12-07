@@ -43,11 +43,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <GlassCard className="overflow-hidden border-0 bg-slate-900/20 dark:bg-slate-900/20 h-full relative group">
                 {/* Full Background Image */}
                 <div className="absolute inset-0 w-full h-full">
+                    {/* Window Header */}
+                    <div className="absolute top-0 left-0 right-0 h-8 bg-slate-900/80 backdrop-blur-md z-40 flex items-center px-4 border-b border-white/10">
+                        <div className="flex gap-2">
+                            <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div className="ml-4 text-xs font-mono text-slate-400 opacity-60">
+                            ~/projects/{project.title.toLowerCase().replace(/\s+/g, '-')}
+                        </div>
+                    </div>
+
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 mix-blend-overlay z-10`}></div>
                     <img
                         src={project.image}
                         alt={`${project.title} Preview`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pt-8"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent opacity-90 z-20"></div>
                 </div>
@@ -72,7 +84,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                                 <m.span
                                     key={tag}
                                     variants={tagVariants[index]}
-                                    className="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white text-xs font-medium backdrop-blur-sm"
+                                    className="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white text-xs font-medium backdrop-blur-sm font-mono"
                                 >
                                     {tag}
                                 </m.span>

@@ -72,7 +72,14 @@ export const generateAIResponse = async (messages: Message[], newMessage: string
     try {
         // Note: In a real production app, this call should be proxied through a backend
         // to avoid exposing the API key.
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+        // Note: In a real production app, this call should be proxied through a backend
+        // to avoid exposing the API key.
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        if (!apiKey) {
+            console.error("Missing VITE_GEMINI_API_KEY");
+            return "Error de configuración: API Key no encontrada.";
+        }
+        const ai = new GoogleGenAI({ apiKey });
 
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
