@@ -30,8 +30,11 @@ export const ChatBot: React.FC = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className={`fixed bottom-24 right-6 w-[90vw] sm:w-[400px] h-[500px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden backdrop-blur-xl ${styles.chatContainer}`}
+                        className={`fixed bottom-24 right-6 w-[90vw] sm:w-[400px] h-[500px] bg-slate-950/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_30px_rgba(6,182,212,0.3)] z-50 flex flex-col overflow-hidden backdrop-blur-xl ${styles.chatContainer}`}
                     >
+                        {/* Decorative Elements */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 animate-pulse"></div>
+                        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
                         <ChatHeader onClose={() => setIsOpen(false)} />
 
                         <MessageList
@@ -48,7 +51,6 @@ export const ChatBot: React.FC = () => {
                             input={input}
                             setInput={setInput}
                             handleSend={handleSend}
-                            handleKeyPress={handleKeyPress}
                             isLoading={isLoading}
                         />
                     </m.div>

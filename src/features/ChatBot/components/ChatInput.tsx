@@ -5,31 +5,39 @@ interface ChatInputProps {
     input: string;
     setInput: (value: string) => void;
     handleSend: () => void;
-    handleKeyPress: (e: React.KeyboardEvent) => void;
     isLoading: boolean;
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ input, setInput, handleSend, handleKeyPress, isLoading }) => {
+export const ChatInput: React.FC<ChatInputProps> = ({ input, setInput, handleSend, isLoading }) => {
+    const onSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (input.trim() && !isLoading) {
+            handleSend();
+        }
+    };
+
     return (
-        <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-white/10">
-            <div className="flex gap-2">
+        <form onSubmit={onSubmit} className="p-4 bg-slate-900/80 border-t border-cyan-500/20 relative">
+            <div className="relative flex items-center gap-2">
+                <span className="text-cyan-500 font-mono animate-pulse">{'>'}</span>
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyPress}
-                    placeholder="Pregunta sobre mi experiencia..."
-                    className="flex-1 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 dark:text-white placeholder-slate-400 outline-none transition-all"
+                    placeholder="Enter command..."
+                    className="flex-1 bg-transparent text-cyan-100 placeholder-cyan-700/50 focus:outline-none font-mono text-sm py-2"
+                    disabled={isLoading}
                 />
                 <button
-                    onClick={handleSend}
-                    disabled={isLoading || !input.trim()}
-                    className="p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg shadow-indigo-500/20"
-                    aria-label="Send message"
+                    type="submit"
+                    disabled={!input.trim() || isLoading}
+                    className="p-2 text-cyan-500 hover:text-cyan-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                     <Send size={18} />
                 </button>
             </div>
-        </div>
+            {/* Scanline effect */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent pointer-events-none opacity-50"></div>
+        </form>
     );
 };

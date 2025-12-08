@@ -6,6 +6,9 @@ export interface HeroData {
     techStack: string;
     cvLink: string;
     status: string;
+    linkedinLink: string;
+    githubLink: string;
+    email: string;
 }
 
 export interface HeroProps {

@@ -77,7 +77,15 @@ const certificationsData: CertificationItem[] = [
     { name: "Master en React", inst: "Udemy", icon: Award },
     { name: "Python / Django", inst: "ConquerBlocks", icon: Terminal },
     { name: "SQL & MySQL", inst: "ConquerBlocks", icon: Database },
-    { name: "N8N Automation", inst: "Self-taught", icon: Cpu }
+    { name: "N8N Automation", inst: "Self-taught", icon: Cpu },
+    { name: "Soft Skills", inst: "ConquerBlocks", icon: Award },
+    { name: "CSS Avanzado", inst: "ConquerBlocks", icon: Layout },
+    { name: "Python", inst: "ConquerBlocks", icon: Terminal },
+    { name: "Python Avanzado", inst: "ConquerBlocks", icon: Terminal },
+    { name: "React Avanzado", inst: "ConquerBlocks", icon: Code2 },
+    { name: "WordPress", inst: "ConquerBlocks", icon: Globe },
+    { name: "TypeScript", inst: "ConquerBlocks", icon: Code2 },
+    { name: "Streamlit", inst: "ConquerBlocks", icon: Layout }
 ];
 
 const techStackData: TechStackData = {

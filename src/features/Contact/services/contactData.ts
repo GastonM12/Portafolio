@@ -22,13 +22,6 @@ const socialLinks: SocialLink[] = [
         url: 'mailto:gastonexequielmori@outlook.com',
         icon: Mail,
         hoverColorClass: 'group-hover:text-emerald-600 dark:group-hover:text-emerald-400'
-    },
-    {
-        id: 'whatsapp',
-        label: 'WhatsApp',
-        url: 'https://wa.me/543493511221',
-        icon: Phone,
-        hoverColorClass: 'group-hover:text-green-600 dark:group-hover:text-green-400'
     }
 ];
 
