@@ -13,19 +13,7 @@ import movieImage from '../../../assets/image/apiPelis.png';
 import portfolioImage from '../../../assets/image/Captura desde 2025-12-06 14-21-44.png';
 
 const projectsData: Project[] = [
-    {
-        id: 9,
-        title: "ScaleLink",
-        description: "Plataforma moderna desarrollada con React y Vite. Enfocada en la escalabilidad y rendimiento.",
-        tags: ["React", "Vite", "Frontend"],
-        links: [
-            { label: "Ver Código", url: "https://github.com/GastonM12/ScaleLink", icon: Github }
-        ],
-        image: scaleLinkImage,
-        badge: { icon: Link, text: "SaaS Platform", color: "emerald" },
-        layout: "left",
-        gradient: "from-emerald-200 via-teal-200 to-white dark:from-emerald-900 dark:via-teal-900 dark:to-slate-900"
-    },
+
     {
         id: 8,
         title: "MundosE Platform",
@@ -131,6 +119,19 @@ const projectsData: Project[] = [
         badge: { icon: MessageCircle, text: "Socket.IO", color: "violet" },
         layout: "left",
         gradient: "from-violet-200 via-indigo-200 to-white dark:from-violet-900 dark:via-indigo-900 dark:to-slate-900"
+    },
+    {
+        id: 9,
+        title: "ScaleLink",
+        description: "Plataforma moderna desarrollada con React y Vite. Enfocada en la escalabilidad y rendimiento.",
+        tags: ["React", "Vite", "Frontend"],
+        links: [
+            { label: "Ver Código", url: "https://github.com/GastonM12/ScaleLink", icon: Github }
+        ],
+        image: scaleLinkImage,
+        badge: { icon: Link, text: "SaaS Platform", color: "emerald" },
+        layout: "left",
+        gradient: "from-emerald-200 via-teal-200 to-white dark:from-emerald-900 dark:via-teal-900 dark:to-slate-900"
     },
     {
         id: 5,
