@@ -112,13 +112,30 @@ export const generateAIResponse = async (messages: Message[], newMessage: string
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.error || `Error ${response.status}: ${response.statusText}`);
+            // Extract the actual error message if it's nested
+            const errorMessage = errorData.error?.message || errorData.error || `Error ${response.status}: ${response.statusText}`;
+            throw new Error(errorMessage);
         }
 
         const data = await response.json();
         return data.text || "Lo siento, tuve un problema procesando eso. ¿Podrías intentar de nuevo?";
     } catch (error: any) {
         console.error("Error generating response:", error);
-        return `Error del sistema: ${error.message || "Ocurrió un error desconocido."}`;
+
+        // Clean up the error message for the user
+        let userMessage = "Ocurrió un error desconocido.";
+
+        if (typeof error.message === 'string') {
+            // Check for common error patterns
+            if (error.message.includes("503") || error.message.includes("overloaded")) {
+                userMessage = "El servicio está temporalmente saturado. Por favor intenta de nuevo en unos segundos.";
+            } else if (error.message.includes("API Key")) {
+                userMessage = "Error de configuración: API Key inválida o faltante.";
+            } else {
+                userMessage = `Error del sistema: ${error.message}`;
+            }
+        }
+
+        return userMessage;
     }
 };
