@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Message } from "../models";
 
 // CV Context to inject into the AI (Duplicated for local fallback)
@@ -83,19 +83,25 @@ export const generateAIResponse = async (messages: Message[], newMessage: string
                 return "Error de configuración local: Falta VITE_GEMINI_API_KEY en .env";
             }
 
-            const ai = new GoogleGenAI({ apiKey });
-            const response = await ai.models.generateContent({
-                model: 'gemini-2.5-flash',
-                config: { systemInstruction: CV_CONTEXT },
+            const genAI = new GoogleGenerativeAI(apiKey);
+            const model = genAI.getGenerativeModel({
+                model: "gemini-1.5-flash",
+                systemInstruction: CV_CONTEXT,
+            });
+
+            const chatHistory = messages.map(m => ({
+                role: m.role === 'user' ? 'user' : 'model',
+                parts: [{ text: m.text }]
+            }));
+
+            const result = await model.generateContent({
                 contents: [
-                    ...messages.map(m => ({
-                        role: m.role === 'user' ? 'user' : 'model',
-                        parts: [{ text: m.text }]
-                    })),
+                    ...chatHistory,
                     { role: 'user', parts: [{ text: newMessage }] }
                 ]
             });
-            return response.text || "Error al generar respuesta.";
+            const response = await result.response;
+            return response.text() || "Error al generar respuesta.";
         }
 
         // PRODUCTION MODE

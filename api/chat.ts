@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const config = {
     runtime: 'edge',
@@ -86,12 +86,13 @@ export default async function handler(req: Request) {
             });
         }
 
-        const ai = new GoogleGenAI({ apiKey });
-        const response = await ai.models.generateContent({
-            model: 'gemini-1.5-flash',
-            config: {
-                systemInstruction: CV_CONTEXT,
-            },
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({
+            model: "gemini-1.5-flash",
+            systemInstruction: CV_CONTEXT,
+        });
+
+        const result = await model.generateContent({
             contents: [
                 ...messages.map((m: any) => ({
                     role: m.role === 'user' ? 'user' : 'model',
@@ -100,8 +101,9 @@ export default async function handler(req: Request) {
                 { role: 'user', parts: [{ text: newMessage }] }
             ]
         });
+        const response = await result.response;
 
-        return new Response(JSON.stringify({ text: response.text }), {
+        return new Response(JSON.stringify({ text: response.text() }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });
