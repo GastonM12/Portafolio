@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Terminal, Cpu, Globe, Sparkles } from 'lucide-react';
+import { useLanguage } from '../../../context/LanguageContext';
 
 interface StackPreviewCardProps {
     onMouseEnter: () => void;
@@ -8,6 +9,7 @@ interface StackPreviewCardProps {
 }
 
 export const StackPreviewCard: React.FC<StackPreviewCardProps> = ({ onMouseEnter, onMouseLeave }) => {
+    const { language } = useLanguage();
     return (
         <motion.div
             className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 cursor-pointer"
@@ -58,7 +60,9 @@ export const StackPreviewCard: React.FC<StackPreviewCardProps> = ({ onMouseEnter
                             +20
                         </motion.div>
                     </div>
-                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider group-hover:text-indigo-500 transition-colors">Ver Stack Completo</p>
+                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider group-hover:text-indigo-500 transition-colors">
+                        {language === 'en' ? 'View Full Stack' : 'Ver Stack Completo'}
+                    </p>
                 </div>
             </div>
         </motion.div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { TechCategory } from '../models';
+import { useLanguage } from '../../../context/LanguageContext';
 
 interface TechStackModalProps {
     isOpen: boolean;
@@ -12,6 +13,8 @@ interface TechStackModalProps {
 }
 
 export const TechStackModal: React.FC<TechStackModalProps> = ({ isOpen, onClose, onMouseEnter, onMouseLeave, techStack }) => {
+    const { language } = useLanguage();
+
     return (
         <AnimatePresence mode="wait">
             {isOpen && (
@@ -46,10 +49,16 @@ export const TechStackModal: React.FC<TechStackModalProps> = ({ isOpen, onClose,
 
                         <div className="mb-12 text-center">
                             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 drop-shadow-lg">
-                                Arsenal <span className="text-indigo-400">Tecnológico</span>
+                                {language === 'en' ? (
+                                    <>Tech <span className="text-indigo-400">Arsenal</span></>
+                                ) : (
+                                    <>Arsenal <span className="text-indigo-400">Tecnológico</span></>
+                                )}
                             </h2>
                             <p className="text-white/90 max-w-2xl mx-auto drop-shadow-md">
-                                Un ecosistema de herramientas seleccionadas para construir soluciones escalables, robustas y de alto rendimiento.
+                                {language === 'en'
+                                    ? 'A curated ecosystem of modern tools selected to build scalable, robust, and high-performance solutions.'
+                                    : 'Un ecosistema de herramientas seleccionadas para construir soluciones escalables, robustas y de alto rendimiento.'}
                             </p>
                         </div>
 

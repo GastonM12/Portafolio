@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { getNavLinks } from '../services/navbarData';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export const useNavbarLogic = (theme: 'dark' | 'light', toggleTheme: () => void) => {
     const [isOpen, setIsOpen] = useState(false);
-    const links = getNavLinks();
+    const { language } = useLanguage();
+    const links = getNavLinks(language);
 
     const handleThemeToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
         const isDark = theme === 'dark';

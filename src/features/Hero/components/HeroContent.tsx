@@ -37,11 +37,11 @@ export const HeroContent: React.FC<HeroContentProps> = ({ data }) => {
             <div className="flex flex-wrap gap-4 pt-4">
                 <a
                     href={data.cvLink}
-                    download="CV_Gaston_Mori.pdf"
+                    download="CV - Mori Gaston Exequiel - Full Stack Developer.pdf"
                     className="group relative px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold text-lg overflow-hidden transition-all hover:shadow-xl hover:scale-105 active:scale-95 inline-flex items-center justify-center"
                 >
                     <span className="relative z-10 flex items-center gap-2">
-                        Descargar CV <Download size={20} />
+                        {data.downloadCvLabel} <Download size={20} />
                     </span>
                 </a>
                 <div className="relative flex items-center h-[60px]">
@@ -56,7 +56,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({ data }) => {
                                 onClick={() => setShowContactOptions(true)}
                                 className="px-8 py-4 rounded-full border border-slate-300 dark:border-white/10 text-slate-700 dark:text-white font-medium text-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors flex items-center gap-2 whitespace-nowrap"
                             >
-                                Hablemos <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                {data.contactLabel} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                             </m.button>
                         ) : (
                             <m.div

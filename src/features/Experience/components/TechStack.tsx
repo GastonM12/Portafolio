@@ -24,11 +24,15 @@ const SkillRow: React.FC<{ name: string; level: number }> = ({ name, level }) =>
     );
 };
 
+import { useLanguage } from '../../../context/LanguageContext';
+
 interface TechStackProps {
     data: TechStackData;
 }
 
 export const TechStack: React.FC<TechStackProps> = ({ data }) => {
+    const { language } = useLanguage();
+
     return (
         <div className="sticky top-24 space-y-6">
             <motion.div
@@ -52,7 +56,9 @@ export const TechStack: React.FC<TechStackProps> = ({ data }) => {
 
                         {/* Group: Core */}
                         <div>
-                            <h4 className="text-[10px] font-bold uppercase text-slate-400 mb-3 tracking-wider">Backend & Data</h4>
+                            <h4 className="text-[10px] font-bold uppercase text-slate-400 mb-3 tracking-wider">
+                                {language === 'en' ? 'Backend & Data' : 'Backend & Datos'}
+                            </h4>
                             <div className="space-y-3">
                                 {data.backend.map((item) => (
                                     <SkillRow key={item.name} name={item.name} level={item.level} />
@@ -62,7 +68,9 @@ export const TechStack: React.FC<TechStackProps> = ({ data }) => {
 
                         {/* Group: Frontend */}
                         <div>
-                            <h4 className="text-[10px] font-bold uppercase text-slate-400 mb-3 tracking-wider">Frontend Interface</h4>
+                            <h4 className="text-[10px] font-bold uppercase text-slate-400 mb-3 tracking-wider">
+                                {language === 'en' ? 'Frontend Interface' : 'Interfaz Frontend'}
+                            </h4>
                             <div className="space-y-3">
                                 {data.frontend.map((item) => (
                                     <SkillRow key={item.name} name={item.name} level={item.level} />
@@ -72,7 +80,9 @@ export const TechStack: React.FC<TechStackProps> = ({ data }) => {
 
                         {/* Group: Tools */}
                         <div>
-                            <h4 className="text-[10px] font-bold uppercase text-slate-400 mb-3 tracking-wider">DevOps & Tools</h4>
+                            <h4 className="text-[10px] font-bold uppercase text-slate-400 mb-3 tracking-wider">
+                                {language === 'en' ? 'DevOps & Tools' : 'DevOps & Herramientas'}
+                            </h4>
                             <div className="space-y-3">
                                 {data.tools.map((item) => (
                                     <SkillRow key={item.name} name={item.name} level={item.level} />
@@ -84,10 +94,16 @@ export const TechStack: React.FC<TechStackProps> = ({ data }) => {
 
                     <div className="px-6 py-4 bg-slate-100 dark:bg-black/20 border-t border-slate-200 dark:border-white/5">
                         <div className="flex justify-between items-center text-xs">
-                            <span className="font-bold text-slate-500">IDIOMAS</span>
+                            <span className="font-bold text-slate-500">
+                                {language === 'en' ? 'LANGUAGES' : 'IDIOMAS'}
+                            </span>
                             <div className="flex gap-3">
-                                <span className="px-2 py-1 rounded bg-white dark:bg-white/10 text-slate-700 dark:text-slate-300">🇪🇸 ES</span>
-                                <span className="px-2 py-1 rounded bg-white dark:bg-white/10 text-slate-700 dark:text-slate-300">🇬🇧 EN (B2)</span>
+                                <span className="px-2 py-1 rounded bg-white dark:bg-white/10 text-slate-700 dark:text-slate-300">
+                                    🇪🇸 {language === 'en' ? 'Spanish (Native)' : 'Español (Nativo)'}
+                                </span>
+                                <span className="px-2 py-1 rounded bg-white dark:bg-white/10 text-slate-700 dark:text-slate-300">
+                                    🇬🇧 {language === 'en' ? 'English (B1)' : 'Inglés (B1)'}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -106,9 +122,13 @@ export const TechStack: React.FC<TechStackProps> = ({ data }) => {
                         <GitBranch size={14} />
                     </div>
                     <div>
-                        <h4 className="text-xs font-bold text-blue-900 dark:text-blue-200 uppercase mb-1">Habilidades Blandas</h4>
+                        <h4 className="text-xs font-bold text-blue-900 dark:text-blue-200 uppercase mb-1">
+                            {language === 'en' ? 'Soft Skills' : 'Habilidades Blandas'}
+                        </h4>
                         <p className="text-xs text-slate-600 dark:text-slate-400 italic leading-relaxed">
-                            "Capacidad de análisis, gestión de tiempo, motivación de equipos y adaptabilidad en entornos ágiles."
+                            {language === 'en'
+                                ? '"Analytical thinking, efficient time management, team motivation, and rapid adaptability in agile workflows."'
+                                : '"Capacidad de análisis, gestión de tiempo, motivación de equipos y adaptabilidad en entornos ágiles."'}
                         </p>
                     </div>
                 </div>

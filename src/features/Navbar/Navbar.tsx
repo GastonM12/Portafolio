@@ -4,6 +4,7 @@ import { useNavbarLogic } from './hooks/useNavbarLogic';
 import { Logo } from './components/Logo';
 import { DesktopMenu } from './components/DesktopMenu';
 import { ThemeToggle } from './components/ThemeToggle';
+import { LanguageToggle } from './components/LanguageToggle';
 import { MobileMenu } from './components/MobileMenu';
 import { MobileToggle } from './components/MobileToggle';
 import { NavbarProps } from './models';
@@ -21,7 +22,10 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
             <div className="pointer-events-auto bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-lg">
                 <Logo />
                 <DesktopMenu links={links} />
-                <ThemeToggle theme={theme} onToggle={handleThemeToggle} />
+                <div className="flex items-center gap-2">
+                    <LanguageToggle />
+                    <ThemeToggle theme={theme} onToggle={handleThemeToggle} />
+                </div>
                 <MobileToggle isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
 

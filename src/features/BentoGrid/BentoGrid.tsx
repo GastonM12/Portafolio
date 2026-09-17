@@ -7,10 +7,12 @@ import { StackPreviewCard } from './components/StackPreviewCard';
 import { SocialCard } from './components/SocialCard';
 import { ContactCard } from './components/ContactCard';
 import { TechStackModal } from './components/TechStackModal';
+import { useLanguage } from '../../context/LanguageContext';
 import styles from './BentoGrid.module.css';
 
 export const BentoGrid: React.FC = () => {
     const { isStackOpen, setIsStackOpen, handleMouseEnter, handleMouseLeave, techStack } = useBentoGridLogic();
+    const { language } = useLanguage();
 
     return (
         <>
@@ -23,7 +25,11 @@ export const BentoGrid: React.FC = () => {
                         className="mb-12"
                     >
                         <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                            Sobre <span className="text-indigo-500">Mí</span>
+                            {language === 'en' ? (
+                                <>About <span className="text-indigo-500">Me</span></>
+                            ) : (
+                                <>Sobre <span className="text-indigo-500">Mí</span></>
+                            )}
                         </h2>
                     </m.div>
 
