@@ -1,5 +1,6 @@
 import React from 'react';
 import { Send } from 'lucide-react';
+import { useLanguage } from '../../../context/LanguageContext';
 
 interface ChatInputProps {
     input: string;
@@ -9,6 +10,8 @@ interface ChatInputProps {
 }
 
 export const ChatInput: React.FC<ChatInputProps> = ({ input, setInput, handleSend, isLoading }) => {
+    const { language } = useLanguage();
+
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (input.trim() && !isLoading) {
@@ -24,7 +27,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ input, setInput, handleSen
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Enter command..."
+                    placeholder={language === 'en' ? "Type a command or question..." : "Escribí un comando o pregunta..."}
                     className="flex-1 bg-transparent text-cyan-100 placeholder-cyan-700/50 focus:outline-none font-mono text-sm py-2"
                     disabled={isLoading}
                 />

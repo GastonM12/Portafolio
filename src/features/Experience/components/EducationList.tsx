@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { GlassCard } from '../../../components/ui/GlassCard';
 import { Modal } from '../../../components/ui/Modal';
 import { EducationItem, CertificationItem } from '../models';
+import { useLanguage } from '../../../context/LanguageContext';
 
 interface EducationListProps {
     education: EducationItem[];
@@ -11,6 +12,7 @@ interface EducationListProps {
 }
 
 export const EducationList: React.FC<EducationListProps> = ({ education, certifications }) => {
+    const { language } = useLanguage();
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
     // Show only first 7 certifications
@@ -62,8 +64,14 @@ export const EducationList: React.FC<EducationListProps> = ({ education, certifi
                         <GraduationCap className="text-yellow-600 dark:text-yellow-400" size={24} />
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">Formación Académica</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">Educación formal y certificaciones especializadas</p>
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                            {language === 'en' ? 'Academic Background' : 'Formación Académica'}
+                        </h3>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                            {language === 'en'
+                                ? 'Formal education and specialized certifications'
+                                : 'Educación formal y certificaciones especializadas'}
+                        </p>
                     </div>
                 </div>
 
@@ -72,7 +80,7 @@ export const EducationList: React.FC<EducationListProps> = ({ education, certifi
                     {/* Timeline: Formal Education */}
                     <div className="relative">
                         <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
-                            <BookOpen size={14} /> Carreras
+                            <BookOpen size={14} /> {language === 'en' ? 'Degrees & Programs' : 'Carreras'}
                         </h4>
 
                         {/* Vertical Line */}
@@ -94,7 +102,7 @@ export const EducationList: React.FC<EducationListProps> = ({ education, certifi
                     {/* Certifications Grid */}
                     <div>
                         <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
-                            <Award size={14} /> Certificaciones
+                            <Award size={14} /> {language === 'en' ? 'Certifications' : 'Certificaciones'}
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {displayedCertifications.map((course, idx) => (
@@ -115,10 +123,10 @@ export const EducationList: React.FC<EducationListProps> = ({ education, certifi
                                 >
                                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                     <span className="font-bold text-xs mb-1 z-10 flex items-center gap-1">
-                                        Ver todas <Award size={12} />
+                                        {language === 'en' ? 'View all' : 'Ver todas'} <Award size={12} />
                                     </span>
                                     <span className="text-[10px] text-indigo-100 z-10 bg-white/20 px-2 py-0.5 rounded-full">
-                                        +{remainingCount} más
+                                        +{remainingCount} {language === 'en' ? 'more' : 'más'}
                                     </span>
                                 </button>
                             )}
@@ -131,7 +139,7 @@ export const EducationList: React.FC<EducationListProps> = ({ education, certifi
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title="Certificaciones & Logros"
+                title={language === 'en' ? 'Certifications & Achievements' : 'Certificaciones & Logros'}
             >
                 <motion.div
                     variants={containerVariants}

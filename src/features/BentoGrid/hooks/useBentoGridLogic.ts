@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { getTechStack } from '../services/bentoData';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export const useBentoGridLogic = () => {
     const [isStackOpen, setIsStackOpen] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const techStack = getTechStack();
+    const { language } = useLanguage();
+    const techStack = getTechStack(language);
 
     const handleMouseEnter = () => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);

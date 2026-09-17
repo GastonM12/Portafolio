@@ -1,5 +1,6 @@
 import { useScroll, useTransform } from 'framer-motion';
 import { getHeroData } from '../services/heroData';
+import { useLanguage } from '../../../context/LanguageContext';
 // Adjusting imports to match the new location
 import heroImageDark from '../../../assets/image/Gemini_Generated_Image_ujziezujziezujzi.png';
 import heroImageLight from '../../../assets/image/Gemini_Generated_Image_4fsrj84fsrj84fsr (1).png';
@@ -7,7 +8,8 @@ import heroImageLight from '../../../assets/image/Gemini_Generated_Image_4fsrj84
 export const useHeroLogic = (theme: string) => {
     const { scrollY } = useScroll();
     const opacity = useTransform(scrollY, [0, 700], [0, 1]);
-    const heroData = getHeroData();
+    const { language } = useLanguage();
+    const heroData = getHeroData(language);
     const heroImage = theme === 'dark' ? heroImageDark : heroImageLight;
 
     return {

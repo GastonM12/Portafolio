@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export const ContactCard: React.FC = () => {
+    const { language } = useLanguage();
+
     return (
         <motion.div
             className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1"
@@ -17,8 +20,12 @@ export const ContactCard: React.FC = () => {
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-lg shadow-green-400/50"></div>
                 </div>
                 <div>
-                    <p className="text-indigo-100 text-xs font-medium mb-1 drop-shadow-sm">¿Tienes un proyecto?</p>
-                    <h4 className="text-lg font-bold text-white drop-shadow-md">Hablemos</h4>
+                    <p className="text-indigo-100 text-xs font-medium mb-1 drop-shadow-sm">
+                        {language === 'en' ? 'Have a project?' : '¿Tienes un proyecto?'}
+                    </p>
+                    <h4 className="text-lg font-bold text-white drop-shadow-md">
+                        {language === 'en' ? "Let's talk" : 'Hablemos'}
+                    </h4>
                 </div>
             </div>
         </motion.div>

@@ -2,7 +2,27 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import profileImage from '../../../assets/image/Picsart_25-12-01_18-53-07-741.jpg';
 
+import { useLanguage } from '../../../context/LanguageContext';
+
 export const ProfileCard: React.FC = () => {
+    const { language } = useLanguage();
+
+    const skills = language === 'en'
+        ? ['Teamwork', 'Management', 'Analysis', 'Scrum']
+        : ['Trabajo en Equipo', 'Gestión', 'Análisis', 'Scrum'];
+
+    const bio = language === 'en' ? (
+        <>
+            Full Stack Developer focused on designing, building, and scaling modern web applications and ERP systems.
+            Specialized in <span className="text-slate-900 dark:text-white font-semibold">React, Node.js, Laravel</span> and cloud infrastructure on AWS.
+        </>
+    ) : (
+        <>
+            Desarrollador Full Stack enfocado en diseño, desarrollo y escalabilidad de aplicaciones web y sistemas ERP.
+            Especializado en <span className="text-slate-900 dark:text-white font-semibold">React, Node.js, Laravel</span> e infraestructura cloud en AWS.
+        </>
+    );
+
     return (
         <motion.div
             className="col-span-1 md:col-span-2 lg:col-span-2 row-span-2"
@@ -29,14 +49,13 @@ export const ProfileCard: React.FC = () => {
                     </div>
 
                     <p className="text-slate-600 dark:text-slate-300 leading-relaxed drop-shadow-sm text-sm">
-                        Soy programador en formación con un sólido interés en el desarrollo web. Actualmente curso la carrera de <span className="text-slate-900 dark:text-white font-semibold">Técnico Superior en Programación</span>.
-                        Me motiva aprender constantemente y enfrentar nuevos desafíos, buscando siempre aportar valor en entornos colaborativos.
+                        {bio}
                     </p>
                 </div>
 
                 <div className="z-10 mt-4 flex flex-col gap-3">
                     <div className="flex flex-wrap gap-2">
-                        {['Trabajo en Equipo', 'Gestión', 'Análisis', 'Scrum'].map((skill) => (
+                        {skills.map((skill) => (
                             <span key={skill} className="px-2 py-1 rounded-md bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 text-xs font-medium border border-indigo-100 dark:border-indigo-500/20 shadow-sm">
                                 {skill}
                             </span>
@@ -48,7 +67,7 @@ export const ProfileCard: React.FC = () => {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
-                        Open to Work
+                        {language === 'en' ? 'Open to Work' : 'Disponible para trabajar'}
                     </div>
                 </div>
             </div>

@@ -9,6 +9,8 @@ export interface HeroData {
     linkedinLink: string;
     githubLink: string;
     email: string;
+    downloadCvLabel: string;
+    contactLabel: string;
 }
 
 export interface HeroProps {

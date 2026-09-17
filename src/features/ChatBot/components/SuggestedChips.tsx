@@ -1,11 +1,14 @@
-import React from 'react';
+import { useLanguage } from '../../../context/LanguageContext';
 
 interface SuggestedChipsProps {
     onChipClick: (chip: string) => void;
 }
 
 export const SuggestedChips: React.FC<SuggestedChipsProps> = ({ onChipClick }) => {
-    const chips = ['Experiencia en Python', '¿Proyectos recientes?', 'Contacto'];
+    const { language } = useLanguage();
+    const chips = language === 'en'
+        ? ['Python & Node Experience', 'Recent Projects', 'Contact Info']
+        : ['Experiencia en Python/Node', '¿Proyectos recientes?', 'Contacto'];
 
     return (
         <div className="px-4 py-2 flex gap-2 overflow-x-auto no-scrollbar">

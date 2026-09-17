@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from '../models';
+import { LanguageToggle } from './LanguageToggle';
 
 interface MobileMenuProps {
     isOpen: boolean;
@@ -22,6 +23,10 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, setIsOpen, links
                     {link.name}
                 </a>
             ))}
+            <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center px-2">
+                <span className="text-xs text-slate-500 font-mono">Idioma / Language</span>
+                <LanguageToggle />
+            </div>
         </div>
     );
 };

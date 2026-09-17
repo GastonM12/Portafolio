@@ -1,9 +1,10 @@
 import { Layout, Terminal, Database, Cloud } from 'lucide-react';
 import { TechCategory } from '../models';
+import { Language } from '../../../context/LanguageContext';
 
-export const techStack: TechCategory[] = [
+export const getTechStack = (lang: Language = 'es'): TechCategory[] => [
     {
-        category: "Frontend Ecosystem",
+        category: lang === 'en' ? "Frontend Ecosystem" : "Ecosistema Frontend",
         icon: Layout,
         color: "blue",
         skills: [
@@ -18,7 +19,7 @@ export const techStack: TechCategory[] = [
         ]
     },
     {
-        category: "Backend & API",
+        category: lang === 'en' ? "Backend & APIs" : "Backend & APIs",
         icon: Terminal,
         color: "emerald",
         skills: [
@@ -31,7 +32,7 @@ export const techStack: TechCategory[] = [
         ]
     },
     {
-        category: "Database & Cloud",
+        category: lang === 'en' ? "Databases & Cloud" : "Bases de Datos & Cloud",
         icon: Database,
         color: "purple",
         skills: [
@@ -44,7 +45,7 @@ export const techStack: TechCategory[] = [
         ]
     },
     {
-        category: "Tools & DevOps",
+        category: lang === 'en' ? "Tools & DevOps" : "Herramientas & DevOps",
         icon: Cloud,
         color: "orange",
         skills: [
@@ -57,5 +58,3 @@ export const techStack: TechCategory[] = [
         ]
     }
 ];
-
-export const getTechStack = () => techStack;
